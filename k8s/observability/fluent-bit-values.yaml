@@ -1,0 +1,32 @@
+serviceAccount:
+  create: true
+  name: fluent-bit
+
+# backend:
+#   type: loki
+
+# loki:
+#   enabled: true
+#   url: "http://loki.observability.svc.cluster.local:3100/loki/api/v1/push"
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 32Mi
+
+config:
+  outputs: |
+    [OUTPUT]
+        Name        loki
+        Match       *
+        Host        loki.observability.svc.cluster.local
+        Port        3100
+        tls         off
+        tls.verify  off
+        # If you use authentication, add:
+        # http_user   <user>
+        # http_passwd <password>
+        Labels      agent=fluent-bit
