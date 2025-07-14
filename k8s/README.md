@@ -41,8 +41,6 @@
   ```sh
   cd observability
   ./deploy-observability.sh
-  # or
-  ./deploy-observability-backup.sh
   ```
 
 ### 2. Microsim Application
