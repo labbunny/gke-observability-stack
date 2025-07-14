@@ -1,17 +1,21 @@
-1. Install kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
-2. Configure kubectl config for GKE - https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl
-3. Install Helm - https://helm.sh/docs/helm/helm_install/
-Helm chart Prometheus-Grafana - https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
-4. ingress guide https://www.youtube.com/watch?v=GhZi4DxaxxE
+# Project Overview
 
-# commands
-gcloud auth login
-apt-get install google-cloud-cli-gke-gcloud-auth-plugin
-gcloud container clusters get-credentials dev-gke-cluster --location us-central1-a
-k config get-contexts
-k get all
+This repository contains infrastructure and application deployment code for a cloud-native environment, organized as follows:
 
+## Structure
 
-kubectl apply -f k8s/microsim/deployment.yaml
-kubectl apply -f k8s/microsim/service.yaml
-kubectl get pods -l app=microsim
+- **terraform/**: Infrastructure as Code for provisioning cloud resources (e.g., networks, GKE clusters) using Terraform.
+- **k8s/**: Kubernetes manifests and Helm deployment scripts for deploying applications and observability tools.
+
+## Getting Started
+
+For detailed setup, deployment, and maintenance instructions:
+
+- See [`terraform/README.md`](./terraform/README.md) for provisioning cloud infrastructure.
+- See [`k8s/README.md`](./k8s/README.md) for deploying applications and observability tools to Kubernetes.
+
+Each subfolder contains example configuration files and step-by-step guides to help you recreate and manage your own environment.
+
+---
+
+_If you have questions or need further customization, review the README in each subfolder or reach out to the project maintainer._ 

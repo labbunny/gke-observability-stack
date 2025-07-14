@@ -35,12 +35,12 @@ helm upgrade --install promtail grafana/promtail \
   --set loki.serviceName=loki \
   --set loki.serviceNamespace=observability
 
-# echo "Installing kube-prometheus-stack..."
-# helm upgrade --install kube-prom-stack prometheus-community/kube-prometheus-stack \
-#   --namespace observability \
-#   --create-namespace \
-#   --values kube-prom-stack-values.yaml \
-#   --wait
+echo "Installing kube-prometheus-stack..."
+helm upgrade --install kube-prom-stack prometheus-community/kube-prometheus-stack \
+  --namespace observability \
+  --create-namespace \
+  --values kube-prom-stack-values.yaml \
+  --wait
 
 # echo "Installing Jaeger..."
 # helm upgrade --install jaeger jaegertracing/jaeger \
