@@ -45,12 +45,6 @@
 
 ### 2. Microsim Application
 
-- Copy and edit the example manifest files (if provided):
-  ```sh
-  cp microsim/deployment.yaml microsim/deployment.yaml.example
-  cp microsim/service.yaml microsim/service.yaml.example
-  # Edit the .example files as needed, then use them for deployment
-  ```
 - Deploy the application:
   ```sh
   kubectl apply -f microsim/deployment.yaml
