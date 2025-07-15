@@ -68,6 +68,24 @@ This Terraform configuration provisions the following Google Cloud resources:
    terraform apply
    ```
 
+## Accessing the GKE Cluster with kubectl
+
+After deploying the infrastructure, you need to configure `kubectl` to access your GKE cluster:
+
+1. Install the GKE gcloud auth plugin (if not already installed):
+   ```sh
+   apt-get install google-cloud-cli-gke-gcloud-auth-plugin
+   ```
+2. Get cluster credentials:
+   ```sh
+   gcloud container clusters get-credentials dev-gke-cluster --location us-central1-a
+   ```
+3. Verify your kubectl context and resources:
+   ```sh
+   kubectl config get-contexts
+   kubectl get all
+   ```
+
 ---
 
 _This README describes the infrastructure as defined in the `terraform` directory. For further customization, review each module's variables and outputs._ 
