@@ -39,19 +39,26 @@ echo "Installing Jaeger..."
 helm upgrade --install jaeger jaegertracing/jaeger \
   --namespace observability \
   --create-namespace \
-  --values jaeger-values.yaml
+  --values jaeger-values.yaml \
+  --wait
 
 
 echo "Waiting for pods to be ready..."
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=grafana -n observability --timeout=300s
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=prometheus -n observability --timeout=300s
 
+echo "Waiting for Jaeger Query pod to be ready..."
+kubectl wait --for=condition=ready pod -l app.kubernetes.io/component=query -n observability --timeout=300s
 
 echo "Getting Grafana external IP..."
 GRAFANA_IP=$(kubectl get svc -n observability kube-prom-stack-grafana -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 PASSWORD=$(kubectl --namespace observability get secrets kube-prom-stack-grafana -o jsonpath="{.data.admin-password}" | base64 -d 2>/dev/null)
 echo "Grafana is available at: http://$GRAFANA_IP"
 echo "Default credentials: admin / $PASSWORD"
+
+echo "Getting Jaeger external IP..."
+JAEGER_IP=$(kubectl get svc -n observability jaeger-query -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+echo "Jaeger UI is available at: http://$JAEGER_IP"
 
 
 

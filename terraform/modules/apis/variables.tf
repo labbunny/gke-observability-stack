@@ -11,6 +11,7 @@ variable "required_apis" {
         "container.googleapis.com",
         "compute.googleapis.com",
         "iam.googleapis.com",
-        "cloudresourcemanager.googleapis.com"
+        "cloudresourcemanager.googleapis.com",
+        "dns.googleapis.com"
     ]
 }

@@ -4,3 +4,9 @@ collector:
       port: 4318
     http:
       port: 4317
+
+query:
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 16686

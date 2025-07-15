@@ -32,3 +32,10 @@ module "gke" {
 
     depends_on = [module.security]
 }
+
+# Uncomment for DNS setup
+# module "dns" {
+#     source = "../../modules/dns"
+
+#     depends_on = [module.apis]
+# }

@@ -94,6 +94,17 @@ You can override any of these variables by specifying them in your environment's
 
 Refer to each module's `variables.tf` for the list of available variables and their default values.
 
+## Enabling DNS and TLS for Testing
+
+To test proper DNS and TLS provisioning with this setup:
+
+1. **Uncomment the `dns` module** in your environment's `main.tf` file (e.g., `environments/dev/main.tf`).
+2. **Set the required variables** for the DNS module. Variable definitions and descriptions can be found in `modules/dns/variables.tf`.
+3. **Purchase the domain** you want to use for your services (e.g., `example.com`).
+4. **Configure your domain's NS records** at your domain registrar to point to the name servers provided by the Google Cloud DNS managed zone created by Terraform. This is a manual, one-time step per domain.
+
+Once these steps are complete, Terraform will manage all DNS records and static IPs for your services, and GKE ManagedCertificates will provision TLS certificates automatically.
+
 ---
 
 _This README describes the infrastructure as defined in the `terraform` directory. For further customization, review each module's variables and outputs._ 

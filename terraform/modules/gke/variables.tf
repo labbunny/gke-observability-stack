@@ -32,7 +32,7 @@ variable "subnetwork_self_link" {
 variable "node_machine_type" {
     type = string
     description = "The machine type of the node pool"
-    default = "e2-standard-2"
+    default = "e2-standard-4"
 }
 
 variable "node_count" {

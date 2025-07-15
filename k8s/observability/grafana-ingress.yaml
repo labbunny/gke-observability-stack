@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: observability
+  annotations:
+    kubernetes.io/ingress.class: gce
+    networking.gke.io/managed-certificates: managed-cert-grafana
+    kubernetes.io/ingress.global-static-ip-name: grafana-static-ip
+spec:
+  defaultBackend:
+    service:
+      name: kube-prom-stack-grafana
+      port:
+        number: 80
+  rules:
+  - host: grafana.test.gke.si
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kube-prom-stack-grafana
+            port:
+              number: 80
+  
+    

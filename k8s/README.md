@@ -52,6 +52,22 @@
   kubectl apply -f microsim/service.yaml
   ```
 
+## Configuring DNS and TLS for Observability Tools
+
+To enable DNS and TLS for Grafana and Jaeger:
+
+1. In the `observability` directory, update the `jaeger` and `grafana` certificate and ingress YAML files with your correct domain configurations (e.g., set your actual domain names).
+2. In the corresponding values files (e.g., `jaeger-values.yaml`, `kube-prom-stack-values.yaml`), change the service type for Jaeger Query and Grafana from `LoadBalancer` to `ClusterIP`.
+3. After making these changes, apply the four relevant YAML files using `kubectl`:
+   ```sh
+   kubectl apply -f <grafana-cert.yaml>
+   kubectl apply -f <grafana-ingress.yaml>
+   kubectl apply -f <jaeger-cert.yaml>
+   kubectl apply -f <jaeger-ingress.yaml>
+   ```
+
+This will configure your observability tools to be accessible via your custom domains with TLS, using Ingress and ManagedCertificate resources.
+
 ---
 
 _This README describes the Kubernetes manifests and deployment scripts in the `k8s` directory. For further customization, review each values file and manifest._ 

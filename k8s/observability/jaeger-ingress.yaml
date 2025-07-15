@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jaeger-ingress
+  namespace: observability
+  annotations:
+    kubernetes.io/ingress.class: gce
+    networking.gke.io/managed-certificates: managed-cert-jaeger
+    kubernetes.io/ingress.global-static-ip-name: jaeger-static-ip
+spec:
+  defaultBackend:
+    service:
+      name: jaeger-query
+      port:
+        number: 80
+  rules:
+  - host: jaeger.test.gke.si
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jaeger-query
+            port:
+              number: 80
+  
+    
