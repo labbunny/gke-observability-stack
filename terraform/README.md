@@ -76,15 +76,23 @@ After deploying the infrastructure, you need to configure `kubectl` to access yo
    ```sh
    apt-get install google-cloud-cli-gke-gcloud-auth-plugin
    ```
-2. Get cluster credentials:
+2. Get cluster credentials (replace <CLUSTER_NAME> and <LOCATION> with your actual values):
    ```sh
-   gcloud container clusters get-credentials dev-gke-cluster --location us-central1-a
+   gcloud container clusters get-credentials <CLUSTER_NAME> --location <LOCATION>
    ```
 3. Verify your kubectl context and resources:
    ```sh
    kubectl config get-contexts
    kubectl get all
    ```
+
+## Customizing Module Variables
+
+Each module (e.g., network, gke, security, apis) defines its own set of input variables in a `variables.tf` file within the module directory (e.g., `modules/gke/variables.tf`).
+
+You can override any of these variables by specifying them in your environment's `terraform.tfvars` file (e.g., `environments/dev/terraform.tfvars`).
+
+Refer to each module's `variables.tf` for the list of available variables and their default values.
 
 ---
 
