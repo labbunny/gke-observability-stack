@@ -21,12 +21,6 @@ helm upgrade --install loki grafana/loki \
   --create-namespace \
   --values loki-values.yaml
 
-# echo "Installing Fluent Bit..."
-# helm upgrade --install fluent-bit fluent/fluent-bit \
-#   --namespace observability \
-#   --create-namespace \
-#   --values fluent-bit-values.yaml
-  # --set loki.serviceName=loki.observability.svc.cluster.local
 
 echo "Installing Promtail..."
 helm upgrade --install promtail grafana/promtail \
@@ -42,10 +36,11 @@ helm upgrade --install kube-prom-stack prometheus-community/kube-prometheus-stac
   --values kube-prom-stack-values.yaml \
   --wait
 
-# echo "Installing Jaeger..."
-# helm upgrade --install jaeger jaegertracing/jaeger \
-#   --namespace observability \
-#   --create-namespace \
+echo "Installing Jaeger..."
+helm upgrade --install jaeger jaegertracing/jaeger \
+  --namespace observability \
+  --create-namespace \
+  --values jaeger-values.yaml
 
 
 echo "Waiting for pods to be ready..."

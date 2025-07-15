@@ -27,6 +27,14 @@ grafana:
       url: http://loki.observability.svc.cluster.local:3100/
   service:
     type: LoadBalancer
+  # ingress:
+  #   enabled: true
+  #   annotations:
+  #     kubernetes.io/ingress.class: gce
+  #     networking.gke.io/managed-certificates: grafana-cert
+  #     kubernetes.io/ingress.global-static-ip-name: grafana-static-ip
+  #   hosts:
+  #     - grafana.test.gke.si
 
 alertmanager:
   enabled: true

@@ -20,13 +20,7 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: MICROSIM_SERVICE_NAME
-              value: "frontend"
-            - name: MICROSIM_SERVICE_GRAPH
-              value: '{"frontend":["service-a"],"service-a":["service-b"],"service-b":[]}'
-            - name: MICROSIM_SERVER_PORT
-              value: "8080"
-            - name: OTEL_TRACES_SAMPLER
-              value: "always_off"
-            - name: OTEL_TRACES_SAMPLER_ARG
-              value: "0"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+            - name: OTEL_EXPORTER_OTLP_INSECURE
+              value: "true"
