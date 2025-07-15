@@ -6,8 +6,9 @@
 - **Helm-based deployment scripts** for:
   - Loki (log aggregation)
   - Promtail (log shipping)
-  - (Commented out: Fluent Bit, Jaeger, kube-prometheus-stack)
-- **Custom values files** for each Helm chart (`loki-values.yaml`, `fluent-bit-values.yaml`, `kube-prom-stack-values.yaml`, etc.)
+  - kube-prometheus-stack (Prometheus for metrics, Grafana for dashboards, Alertmanager)
+  - Jaeger (distributed tracing)
+- **Custom values files** for each Helm chart (`loki-values.yaml`, `jaeger-values.yaml`, `kube-prom-stack-values.yaml`, etc.)
 - **Shell script** to automate deployment (`deploy-observability.sh`)
 
 ### Microsim Application (`k8s/microsim`)
