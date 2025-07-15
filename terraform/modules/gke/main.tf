@@ -30,7 +30,7 @@ resource "google_container_node_pool" "gke_node_pool" {
     name = "primary-node-pool"
     location = var.zone
     cluster = google_container_cluster.gke_cluster.name
-    node_count = 1
+    node_count = var.node_count
 
     node_config {
         machine_type = var.node_machine_type
